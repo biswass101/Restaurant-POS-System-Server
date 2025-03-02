@@ -17,7 +17,7 @@ const orderSchema = new mongoose.Schema({
     bills: {
         total: {type: Number, required: true},
         tax: {type: Number, required: true},
-        totalWihTax: {type: Number, required: true} 
+        totalWithTax: {type: Number, required: true} 
     },
     items: []
 }, { timestamps: true })

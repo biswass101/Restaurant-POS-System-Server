@@ -21,7 +21,7 @@ const getOrder = async(req, res, next) => {
         res.status(200).json({success: true, data: order});
 
     } catch (error) {
-        
+        next(error);
     }
 }
 const getOrders = async(req, res, next) => {
@@ -39,7 +39,14 @@ const updateOrder = async(req, res, next) => {
             req.params.id,
             {orderStatus},
             {new: true}
-        )
+        );
+
+        if(!order) {
+            const error = createHttpError(404, "Order not found")
+            return next(error);
+        }
+
+        res.status(200).json({success: true, message: 'Order updated successfully', data: order});
     } catch (error) {
         next(error);
     }
