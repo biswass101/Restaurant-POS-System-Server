@@ -1,10 +1,12 @@
 const express = require('express');
 const createHttpError = require('http-errors');
+const cookieParser = require('cookie-parser');
 const globalErrorHandler = require('./middleware/globalErrorHandler');
 const app = express();
 
 //Express Middleware
 app.use(express.json());
+app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 
 //Root Endpoint
