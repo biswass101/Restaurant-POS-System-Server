@@ -15,8 +15,9 @@ app.get('/', (req, res) => {
 })
 
 //Other Endpoints
-app.use("/api/user", require('./routes/user.Route'))
-app.use('/api/order', require('./routes/order.Route'))
+app.use("/api/user", require('./routes/user.Route'));
+app.use('/api/order', require('./routes/order.Route'));
+app.use("/api/table", require('./routes/table.Route'));
 
 // Global Error Handler
 app.use(globalErrorHandler)
