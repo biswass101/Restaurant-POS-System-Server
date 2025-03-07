@@ -66,7 +66,7 @@ const login = async (req, res, next) => {
       maxAge: 1000 * 60 * 60 * 24 * 30, //expires in miliseconds
       httpOnly: true,
       sameSite: "none",
-      seure: true,
+      secure: process.env.NODE_ENV === "production",
     });
 
     res.status(200).json({
@@ -91,4 +91,20 @@ const getUserData = async (req, res, next) => {
   }
 };
 
-module.exports = { register, login, getUserData };
+const logout = async (req, res, next) => {
+  try {
+
+    //remove coockie
+    res.clearCookie('accessToken', {
+      httpOnly: true,
+      sameSite: 'Lax',
+      secure: false
+    });
+    res.status(200).json({success: true, message: "User logout successfully"})
+    
+  } catch (error) {
+    next(error)
+  }
+}
+
+module.exports = { register, login, getUserData, logout };
