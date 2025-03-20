@@ -23,6 +23,7 @@ app.get('/', (req, res) => {
 app.use("/api/user", require('./routes/user.Route'));
 app.use('/api/order', require('./routes/order.Route'));
 app.use("/api/table", require('./routes/table.Route'));
+app.use('/api/payment', require('./routes/payment.Route'))
 
 // Global Error Handler
 app.use(globalErrorHandler)
