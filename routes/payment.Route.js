@@ -1,7 +1,9 @@
 const router = require('express').Router();
-const { createOrder } = require('../controllers/payment.Controller');
+const { createOrder, callback } = require('../controllers/payment.Controller');
+const { bkashAuth } = require('../middleware/bkashAuth');
 const { isVerifiedUser } = require('../middleware/tokenVerification');
 
-router.post('/create-order', isVerifiedUser, createOrder)
+router.post('/bkash/create-order', bkashAuth, createOrder);
+router.get('/bkash/callback',bkashAuth ,callback);
 
 module.exports = router;
