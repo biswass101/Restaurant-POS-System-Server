@@ -44,7 +44,7 @@ const callback = async (req, res, next) => {
             amount: parseInt(data.amount),
         });
 
-        return res.status(200).json({message: "Payment success"});
+        return res.status(200).json({message: "Payment success", data});
       } else {
         return res.json({message: data.statusMessage});
       }
@@ -74,7 +74,8 @@ const createOrder = async (req, res, next) => {
       }
     );
     return res.status(200).json({
-      bkashURL: data.bkashURL,
+      message: "Ok",
+      data
     });
   } catch (error) {
     console.log("Jhamel")
