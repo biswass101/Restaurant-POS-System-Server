@@ -20,7 +20,7 @@ const callback = async (req, res, next) => {
   const { paymentID, status } = req.query;
 
   if (status === "cancel" || status === "failure") {
-    return res.json({status, message: "Payment Failed"});
+    return res.redirect(`http://localhost:5173/menu?payment-status=${status}`);
   }
 
   if (status === "success") {
@@ -44,7 +44,7 @@ const callback = async (req, res, next) => {
             amount: parseInt(data.amount),
         });
 
-        return res.status(200).json({message: "Payment success", data});
+        return res.redirect(`http://localhost:5173/menu?payment-status=${status}`);
       } else {
         return res.json({message: data.statusMessage});
       }
